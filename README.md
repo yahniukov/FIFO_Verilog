@@ -7,6 +7,6 @@ Design Sources in "./src/design/".
 
 Simulation Testbenches in "./src/sim/".
 
-For impatients simlation result in "./other/sim_result/".
+For impatients simulation results in "./other/sim_result/".
 
 Reset is asynchronous.
