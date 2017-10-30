@@ -1,4 +1,4 @@
-module fifo_1x1_testbench (  );
+module fifo_testbench (  );
 
     /* Parameters */
     
@@ -22,7 +22,7 @@ module fifo_1x1_testbench (  );
     
     // FIFO module instance
     
-    fifo_1x1 #(
+    fifo #(
         .DATA_WIDTH(DATA_WIDTH),
         .FIFO_DEPTH(FIFO_DEPTH)
     ) fifo (

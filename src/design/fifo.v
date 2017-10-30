@@ -1,7 +1,7 @@
-module fifo_1x1 ( wr_data, wr_clk, wr_en,           // write port
-                  rd_data, rd_clk, rd_en, rd_valid, // read port
-                  full, empty,                      // debug ports
-                  reset );
+module fifo ( wr_data, wr_clk, wr_en,           // write port
+              rd_data, rd_clk, rd_en, rd_valid, // read port
+              full, empty,                      // debug ports
+              reset );
 
     /* Parameters */
     
