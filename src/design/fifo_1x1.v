@@ -1,12 +1,12 @@
-module fifo_1x1 ( wr_data, wr_clk, wr_en,  // write port
-                  rd_data, rd_clk, rd_en,  // read port
-                  full, empty,             // debug ports
+module fifo_1x1 ( wr_data, wr_clk, wr_en,           // write port
+                  rd_data, rd_clk, rd_en, rd_valid, // read port
+                  full, empty,                      // debug ports
                   reset );
 
     /* Parameters */
     
     parameter DATA_WIDTH = 1;
-    parameter FIFO_DEPTH = 4;
+    parameter FIFO_DEPTH = 8;
     
     localparam COUNTER_WIDTH = clog2(FIFO_DEPTH);
     
@@ -16,7 +16,8 @@ module fifo_1x1 ( wr_data, wr_clk, wr_en,  // write port
     input wire wr_clk, wr_en;
     
     output wire [DATA_WIDTH - 1 : 0] rd_data;
-    input  wire rd_clk, rd_en;  
+    input  wire rd_clk, rd_en; 
+    output wire rd_valid; 
     
     output wire full, empty; 
      
@@ -105,6 +106,17 @@ module fifo_1x1 ( wr_data, wr_clk, wr_en,  // write port
         .rd_en(rd_en),
         .rd_addr(rd_addr),
         .reset(reset | full)
-    );    
+    );   
+    
+    // Read Valid Generation
+    rd_valid_gen #(
+        .FIFO_DEPTH(FIFO_DEPTH),
+        .COUNTER_WIDTH(COUNTER_WIDTH)
+    ) rd_valid_gen (
+        .full(full),
+        .rd_clk(rd_clk),
+        .reset(reset),
+        .rd_valid(rd_valid)
+    );
 
 endmodule
