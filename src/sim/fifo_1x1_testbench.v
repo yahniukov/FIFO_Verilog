@@ -12,6 +12,7 @@ module fifo_1x1_testbench (  );
     
     wire [DATA_WIDTH - 1 : 0] rd_data;
     reg rd_clk = 0, rd_en = 1;
+    wire rd_valid;
     
     wire full, empty;
     
@@ -31,6 +32,7 @@ module fifo_1x1_testbench (  );
         .rd_data(rd_data),
         .rd_clk(rd_clk),
         .rd_en(rd_en),
+        .rd_valid(rd_valid),
         .full(full),
         .empty(empty),
         .reset(reset)
@@ -49,7 +51,7 @@ module fifo_1x1_testbench (  );
     // Read Clock Generation   
     
     always
-        #4 rd_clk = !rd_clk & !full;
+        #3 rd_clk = !rd_clk & !full;
         
     // Reset Generation
     
